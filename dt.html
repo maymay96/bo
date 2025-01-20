@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .formInput {
+            text-align: center;
+        }
+        .boxHands, .boxSlider, .boxHandsInput {
+            margin: 20px 0;
+        }
+        .buttonLove {
+            position: relative;
+            margin-top: 20px;
+        }
+        .button {
+            width: 100%;
+            height: 30px;
+            background-color: pink;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .loadingLove {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            .wrapper {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            .inputField {
+                width: 90%;
+            }
+            .boxHands img, .boxSlider img, .handsCatImgInput img {
+                max-width: 100%;
+                height: auto;
+            }
+            .button {
+                height: 40px;
+            }
+        }
+    </style>
+    <title>ANH BO HÚI</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="formInput">
+            <div class="boxHands">
+                <div class="handsCat">
+                    <img src="../image/handsCat.png" alt="">
+                </div>
+                <h1>Hellu a Bo iu dzấuuuuu</h1>
+            </div>
+            <div class="boxSlider">
+                <div class="listSlider">
+                    <div class="slider">
+                        <img src="https://i.pinimg.com/originals/4c/70/24/4c7024a2f31e75a9972420d695edb24c.gif" alt="">
+                    </div>
+                </div>
+                <div class="left">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </div>
+                <div class="right">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+            <div class="boxHandsInput">
+                <div class="handsCatImgInput">
+                    <img src="../image/handsCat.png" alt="">
+                </div>
+                <input type="text" id="inputField" placeholder="Bấm liền cho tôi?" readonly>
+            </div>
+            <div class="buttonLove">
+                <div class="cricleBtn"></div>
+                <div class="button"></div>
+            </div>
+        </div>
+        <div class="loadingLove">
+            <div class="rhombus">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+            </div>
+        </div>
+        <!-- Rest of your HTML code here -->
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script>
+       var progress = document.querySelector(".progress");
+var percent = document.querySelector(".percent");
+var textBox = document.querySelector(".textBox");
+var button = document.querySelector(".button");
+var textBtn = document.querySelector(".textBtn");
+var heartBox = document.querySelector(".heartBox");
+var cursor = document.querySelector(".buttonCLick img"); 
+var heartItem1 = document.querySelector(".heartItem.item1")
+var heartItem2 = document.querySelector(".heartItem.item2")
+var heartItem3 = document.querySelector(".heartItem.item3")
+var count = 0;
+var percentWidth = 0;
+var heartLeft = -3.2;
+var progressLoad = setInterval(progressInterva,100)
+
+button.addEventListener("click", function(){
+    button.style.transform = "scale(0.8)";
+    setTimeout(()=>{
+        button.style.transform = "scale(1)";
+        window.location.href = "./love/love.html"
+    },200)
+})
+
+function progressInterva(){
+    if(count == 100 && percentWidth == 100){
+        clearInterval(progressLoad)
+        percent.textContent = "Xong ròi nè ku ^^";
+        percent.style.letterSpacing = "1px";
+        textBox.style.transform = "scale(1.3)"
+        heartItem3.style.animation = "1s heartScale forwards"
+        setTimeout(()=>{
+            textBox.style.transform = "scale(0)"
+        },400)
+        setTimeout(()=>{
+            textBox.style.opacity = "0"
+        },600)
+        setTimeout(()=>{
+            button.style.transform= "scale(1)";
+        },800);
+        setTimeout(()=>{
+            button.style.background = "rgb(244,118,121)"
+            button.style.width = "130px";
+            button.style.borderRadius = "20px"
+        },1500)
+        setTimeout(()=>{
+            button.style.height = "40px";
+        },2000)
+        setTimeout(()=>{
+            textBtn.textContent = "Bấm zô!!!!"
+            textBtn.style.color = "#fff"
+        },2500)
+        setTimeout(()=>{
+            cursor.style.opacity = "1";
+        },3000)
+    }
+    else{
+        if(count == 10){
+            heartItem1.style.animation = "1s heartScale forwards"
+        }
+        if(count ==46){
+            percent.style.color= "#fff"
+        }
+        if(count == 60){
+            heartItem2.style.animation = "1s heartScale forwards"
+        }
+        count += 1;
+        percentWidth += 1;
+        heartLeft += 0.968;
+        progress.style.width = percentWidth + '%'
+        percent.innerText = count + '%'
+        heartBox.style.left = heartLeft + '%'
+    }
+}
+    </script>
+</body>
+</html>
